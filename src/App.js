@@ -6,43 +6,38 @@ import './App.css';
 import EpisodeLists from './EpisodeLists'
 
 function App() {
+  
+  const URL = 'https://rickandmortyapi.com/api/episode/';
 
-  const [url, setUrl] = useState('https://rickandmortyapi.com/api/episode/?name=')
+  const [url, setUrl] = useState(URL);
+  const [info, setInfo] = useState({});
   const [lists, setLists] = useState([]);
   const [search, setSearch] = useState('');
-  const [show, setShow] = useState(true);
-
 
   useEffect(() => {
+    axios.get(url)
+    .then(response => {
+        setLists(response.data.results);
+        setInfo(response.data.info);
+    })
+    .catch(error => {
+      console.log(error);
+    })
 
-  })
+  }, [url, search]);
 
-    useEffect(() => {
-      axios.get(`${url}${search}`)
-      .then(response => {
-          setLists(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-    }, [url, search]);
+  const onSearchHandler = (e) => {
+    setSearch(e.target.value);
+    setUrl(`${URL}?name=${e.target.value}`);
+  }
 
-    const onSearchHandler = (e) => {
-      setSearch(e.target.value);
-      setShow(false);
-    }
+  const previousPage = () => {
+    setUrl(info.prev)
+  };
 
-    console.log(search);
-
-    const previousPage = () => {
-      setUrl('https://rickandmortyapi.com/api/episode/?page=1');
-    }
-
-    const nextPage = () => {
-      setUrl('https://rickandmortyapi.com/api/episode/?page=2');
-    }
-
-
+  const nextPage = () => {
+    setUrl(info.next)
+  };
 
   return (
     <div className="App">
@@ -55,12 +50,10 @@ function App() {
           onChange={onSearchHandler} />
       </form>
       <EpisodeLists lists={lists} />
-      {show ?
-        <div className="buttons">
-          <Button onClick={previousPage}>Previous</Button>
-          <Button onClick={nextPage}>Next</Button>
-        </div> : null
-      }
+      <div className="buttons">
+        <Button onClick={previousPage}>Previous</Button>
+        <Button onClick={nextPage}>Next</Button>
+      </div> 
     </div>
   );
 }
