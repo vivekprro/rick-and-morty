@@ -1,0 +1,84 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 1110px;
+}
+
+input {
+  width: 300px;
+  border: 2px solid rgba(148, 125, 125, 0.418);
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+}
+
+.card {
+  width: 350px;
+  height: auto;
+  display: inline-block;
+  border: 1px solid rgb(230, 218, 218);
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px 0px rgb(155, 130, 130);
+  margin: 5px;
+  padding: 5px 0 5px 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.episodeDetails {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0 0 5px 0;
+}
+
+.name {
+  line-height: 20px;
+  height: 24px;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.episodeDetails p {
+  margin: 0;
+  padding: 0;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background-color: rgb(70, 47, 47);
+  margin: 0 10px;
+}
+
+.date {
+  color: #757575;
+  margin: 0;
+  padding: 0;
+}
+
+.lists {
+  display: inline-block;
+}
+
+.buttons {
+  margin: 10px;
+}
+
+.buttons button {
+  cursor: pointer;
+  margin: 10px;
+}
